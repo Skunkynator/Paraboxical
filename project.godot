@@ -1,0 +1,91 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Tile",
+"class": "Block",
+"language": "GDScript",
+"path": "res://editor/block.gd"
+}, {
+"base": "Resource",
+"class": "Config",
+"language": "GDScript",
+"path": "res://config.gd"
+}, {
+"base": "Object",
+"class": "Extended",
+"language": "GDScript",
+"path": "res://extended.gd"
+}, {
+"base": "Button",
+"class": "FileUi",
+"language": "GDScript",
+"path": "res://menu/file-ui.gd"
+}, {
+"base": "Tile",
+"class": "Floor",
+"language": "GDScript",
+"path": "res://editor/floor.gd"
+}, {
+"base": "Button",
+"class": "FolderUi",
+"language": "GDScript",
+"path": "res://menu/folder-ui.gd"
+}, {
+"base": "Reference",
+"class": "Level",
+"language": "GDScript",
+"path": "res://editor/level.gd"
+}, {
+"base": "Tile",
+"class": "Ref",
+"language": "GDScript",
+"path": "res://editor/ref.gd"
+}, {
+"base": "Reference",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://editor/tile.gd"
+}, {
+"base": "Tile",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://editor/wall.gd"
+} ]
+_global_script_class_icons={
+"Block": "",
+"Config": "",
+"Extended": "",
+"FileUi": "",
+"Floor": "",
+"FolderUi": "",
+"Level": "",
+"Ref": "",
+"Tile": "",
+"Wall": ""
+}
+
+[application]
+
+config/name="Paraboxical"
+run/main_scene="res://loading.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+MainController="*res://main_controller.gd"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
