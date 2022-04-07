@@ -3,6 +3,8 @@ extends Node
 
 var config : Config
 var menu_scene := preload("res://menu/file_select.tscn") as PackedScene
+var editor_scene := preload("res://editor/editor.tscn") as PackedScene
+var editor : EditorUi
 var menu : Node
 var current_path : String
 
@@ -22,4 +24,8 @@ func load_editor(file : String):
 	level_file.close()
 	var level := Level.new()
 	level.interpret(level_string)
-	print_debug(level.save())
+	EditorController.current_level = level
+	Extended.remove_children(self)
+	if not editor:
+		editor = editor_scene.instance()
+	add_child(editor)
