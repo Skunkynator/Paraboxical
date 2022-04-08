@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://editor/tile.gd"
 }, {
+"base": "Control",
+"class": "UITile",
+"language": "GDScript",
+"path": "res://editor/tiles/ui_tile.gd"
+}, {
 "base": "Tile",
 "class": "Wall",
 "language": "GDScript",
@@ -75,6 +80,7 @@ _global_script_class_icons={
 "Level": "",
 "Ref": "",
 "Tile": "",
+"UITile": "",
 "Wall": ""
 }
 

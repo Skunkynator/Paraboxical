@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://editor/grid.png" type="Texture" id=1]
 [ext_resource path="res://editor/epsilon.png" type="Texture" id=2]
@@ -8,10 +8,13 @@
 [ext_resource path="res://editor/fast-travel.png" type="Texture" id=6]
 [ext_resource path="res://editor/gallery.png" type="Texture" id=7]
 [ext_resource path="res://editor/info.png" type="Texture" id=8]
+[ext_resource path="res://editor/tiles/ui_tile.gd" type="Script" id=9]
 
 [node name="Control" type="Control"]
 margin_right = 16.0
 margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 9 )
 
 [node name="Floor" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -58,16 +61,22 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 
+[node name="Wall" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+
 [node name="CopyIndicator" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0.333333 )
-
-[node name="Wall" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
 
 [node name="Epsilon" type="ColorRect" parent="."]
 visible = false
@@ -92,7 +101,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
-
-[node name="GridContainer" type="GridContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
