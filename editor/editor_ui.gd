@@ -3,13 +3,15 @@ class_name EditorUi
 
 
 var level_tree : Tree
-var view : Control
+var view : UITile
 var presets : BoxContainer
 
 
 func _ready() -> void:
 	level_tree = get_node_or_null("MainUi/LevelTree") as Tree
+	view = $MainUi/HSplitContainer/DrawArea/Control as UITile
 	setup_tree()
+	setup_view()
 
 
 func _on_tree_entered() -> void:
@@ -52,4 +54,5 @@ func setup_presets() -> void:
 
 
 func setup_view() -> void:
-	pass
+	view.current_tile = EditorController.current_level.root[0]
+	view.refresh()
