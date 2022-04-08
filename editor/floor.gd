@@ -2,7 +2,7 @@ extends Tile
 class_name Floor
 
 
-enum floor_type {button, playerbutton, info, fasttravel, smile, show}
+enum floor_type {button, playerbutton, info, fasttravel, smile, show, demoend, gallery, break_floor}
 
 
 var type : int
@@ -25,6 +25,12 @@ func _load(input : PoolStringArray):
 			type = floor_type.smile
 		"Show":
 			type = floor_type.show
+		"DemoEnd":
+			type = floor_type.demoend
+		"Gallery":
+			type = floor_type.gallery
+		"Break":
+			type = floor_type.break_floor
 
 
 func _save() -> String:
@@ -44,4 +50,10 @@ func _save() -> String:
 			data += " Smile"
 		floor_type.show:
 			data += " Show"
+		floor_type.demoend:
+			data += " DemoEnd"
+		floor_type.gallery:
+			data += " Gallery"
+		floor_type.break_floor:
+			data += " Break"
 	return data
