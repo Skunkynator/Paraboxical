@@ -30,11 +30,21 @@ func setup_tree() -> void:
 
 func add_tree_blocks(blocks : Array, parent : TreeItem):
 	for block in blocks:
-		if not block is Block:
-			continue
-		var item := level_tree.create_item(parent)
-		item.set_text(0,"Block")
-		add_tree_blocks((block as Block).children, item)
+		if block is Block:
+			var item := level_tree.create_item(parent)
+			item.set_text(0,"Block #" + String(block.id))
+			add_tree_blocks((block as Block).children, item)
+		elif block is Ref:
+			var ref := block as Ref
+			var item := level_tree.create_item(parent)
+			var text := "Ref #" + String(ref.id)
+			if ref.infexit:
+				text = "Iexit #" + String(ref.id)
+				text += " num: " + String(ref.infexitnum)
+			if ref.infenter:
+				text += " Ienter #" + String(ref.infenterid)
+				text += " num: " + String(ref.infenternum)
+			item.set_text(0,text)
 
 
 func setup_presets() -> void:
