@@ -144,6 +144,7 @@ margin_right = 28.0
 margin_bottom = 40.0
 toggle_mode = true
 pressed = true
+action_mode = 0
 icon = ExtResource( 1 )
 
 [node name="Button_Edit" type="Button" parent="Toolbar"]
@@ -151,6 +152,7 @@ margin_left = 32.0
 margin_right = 60.0
 margin_bottom = 40.0
 toggle_mode = true
+action_mode = 0
 icon = ExtResource( 3 )
 
 [node name="Button_Delete" type="Button" parent="Toolbar"]
@@ -158,6 +160,7 @@ margin_left = 64.0
 margin_right = 92.0
 margin_bottom = 40.0
 toggle_mode = true
+action_mode = 0
 icon = ExtResource( 2 )
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
