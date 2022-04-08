@@ -20,6 +20,8 @@ func interpret(data : String):
 	var is_header := true
 	var prev_depth : int = -1
 	var prev_tile : Tile
+	var blocks : Dictionary = {}
+	var refs : Array = []
 	for line in data.split("\n", false):
 		var args := (line as String).split(" ",false)
 		if is_header:
@@ -63,11 +65,14 @@ func interpret(data : String):
 					current_tile = Block.new()
 				"Ref":
 					current_tile = Ref.new()
+					refs.append(current_tile)
 				"Wall":
 					current_tile = Wall.new()
 				"Floor":
 					current_tile = Floor.new()
 			current_tile._load(args)
+			if current_tile is Block:
+				blocks[current_tile.id] = current_tile
 			
 			for i in prev_depth - current_depth:
 				prev_tile = prev_tile.parent
@@ -80,6 +85,11 @@ func interpret(data : String):
 				current_tile.parent = prev_tile.parent
 			prev_tile = current_tile
 			prev_depth = current_depth
+	for tile in refs:
+		var ref_tile := tile as Ref
+		ref_tile.ref_to = blocks[ref_tile.id]
+		if ref_tile.infenter:
+			ref_tile.infenter_to = blocks[ref_tile.infenterid]
 	valid = true
 
 
