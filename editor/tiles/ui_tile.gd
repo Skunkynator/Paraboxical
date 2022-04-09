@@ -17,6 +17,8 @@ var wall : ColorRect
 var floor_rect : ColorRect
 var epsilon : Control
 var infinity : Control
+var player : Control
+var possessable : Control
 var tile_scene := load("res://editor/tiles/ui_tile.tscn") as PackedScene
 
 
@@ -32,6 +34,8 @@ func _ready() -> void:
 	epsilon = $Epsilon
 	infinity = $Infinity
 	floor_rect = $Floor
+	player = $Player
+	possessable = $Possessable
 
 
 func refresh(layer : int = 0) -> void:
@@ -41,6 +45,9 @@ func refresh(layer : int = 0) -> void:
 	disable_children()
 	if not current_tile:
 		return
+	if "player" in current_tile:
+		player.visible = current_tile.player
+		possessable.visible = current_tile.possessable
 	if current_tile is Wall:
 		wall.visible = true
 	if current_tile is Floor:
