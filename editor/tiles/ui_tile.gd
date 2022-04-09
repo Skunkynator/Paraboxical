@@ -59,6 +59,7 @@ func refresh(layer : int = 0) -> void:
 
 func draw_children(layer : int, block : Block) -> void:
 	grid.visible = true
+	Extended.free_children(grid)
 	grid.rect_scale.x = 1.0 / block.width
 	grid.rect_scale.y = 1.0 / block.height
 	grid.rect_size.x = 16 * block.width

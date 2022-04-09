@@ -10,6 +10,7 @@ var presets : BoxContainer
 func _ready() -> void:
 	level_tree = get_node_or_null("MainUi/LevelTree") as Tree
 	view = $MainUi/HSplitContainer/DrawArea/Control as UITile
+	level_tree.connect("cell_selected",self,"on_tree_item_selected")
 	setup_tree()
 	setup_view()
 
@@ -21,6 +22,12 @@ func _on_tree_entered() -> void:
 
 func _on_tree_exited() -> void:
 	pass # Replace with function body.
+
+
+func on_tree_item_selected() -> void:
+	var selected := level_tree.get_selected().get_meta("tile") as Tile
+	view.current_tile = selected
+	view.refresh()
 
 
 func setup_tree() -> void:
@@ -35,6 +42,7 @@ func add_tree_blocks(blocks : Array, parent : TreeItem):
 		if block is Block:
 			var item := level_tree.create_item(parent)
 			item.set_text(0,"Block #" + String(block.id))
+			item.set_meta("tile", block)
 			add_tree_blocks((block as Block).children, item)
 		elif block is Ref:
 			var ref := block as Ref
@@ -47,6 +55,7 @@ func add_tree_blocks(blocks : Array, parent : TreeItem):
 				text += " Ienter #" + String(ref.infenterid)
 				text += " num: " + String(ref.infenternum)
 			item.set_text(0,text)
+			item.set_meta("tile", block)
 
 
 func setup_presets() -> void:
