@@ -40,12 +40,16 @@ func setup_tree() -> void:
 func add_tree_blocks(blocks : Array, parent : TreeItem):
 	for block in blocks:
 		if block is Block:
+			if block.fillwithwalls:
+				continue
 			var item := level_tree.create_item(parent)
 			item.set_text(0,"Block #" + String(block.id))
 			item.set_meta("tile", block)
 			add_tree_blocks((block as Block).children, item)
 		elif block is Ref:
 			var ref := block as Ref
+			if ref.ref_to.fillwithwalls:
+				continue
 			var item := level_tree.create_item(parent)
 			var text := "Ref #" + String(ref.id)
 			if ref.infexit:

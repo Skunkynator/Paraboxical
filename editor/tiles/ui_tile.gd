@@ -60,6 +60,17 @@ func refresh(layer : int = 0) -> void:
 func draw_children(layer : int, block : Block) -> void:
 	grid.visible = true
 	Extended.free_children(grid)
+	if block.fillwithwalls:
+		grid.rect_scale.x = 1.0
+		grid.rect_scale.y = 1.0
+		grid.rect_size.x = 16
+		grid.rect_size.y = 16
+		var curr := tile_scene.instance() as UITile
+		grid.add_child(curr)
+		curr.colour = block.colour
+		curr.refresh()
+		curr.wall.visible = true
+		return
 	grid.rect_scale.x = 1.0 / block.width
 	grid.rect_scale.y = 1.0 / block.height
 	grid.rect_size.x = 16 * block.width
