@@ -43,6 +43,18 @@ func refresh(layer : int = 0) -> void:
 	floor_rect.color.a = 1
 	wall.color = colour
 	disable_children()
+	if layer == 0:
+		if current_tile is Block:
+			colour = current_tile.colour
+			draw_children(layer, current_tile)
+		if current_tile is Ref:
+			colour = current_tile.ref_to.colour
+			draw_children(layer, current_tile.ref_to)
+		return
+	if layer == 1:
+		$InputBlocker.visible = true
+		self.connect("mouse_entered",self,"_on_mouse_entered")
+		self.connect("gui_input",self,"_on_gui_input")
 	if not current_tile:
 		return
 	if "player" in current_tile:
@@ -131,3 +143,11 @@ func disable_children() -> void:
 	wall.visible = false
 	epsilon.visible = false
 	infinity.visible = false
+
+
+func _on_mouse_entered() -> void:
+	pass
+
+
+func _on_gui_input(event : InputEvent) -> void:
+	pass
