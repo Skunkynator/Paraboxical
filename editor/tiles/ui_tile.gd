@@ -87,6 +87,8 @@ func draw_children(layer : int, block : Block) -> void:
 	for i_y in block.height:
 		for i_x in block.width:
 			var curr := tile_scene.instance()
+			curr.x = i_x
+			curr.y = block.height - 1 - i_y
 			block_grid.append(curr)
 			grid.add_child(curr)
 	for child in block.children:
