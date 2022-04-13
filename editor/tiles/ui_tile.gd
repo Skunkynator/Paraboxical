@@ -146,8 +146,19 @@ func disable_children() -> void:
 
 
 func _on_mouse_entered() -> void:
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		_on_clicked(false)
 	pass
 
 
 func _on_gui_input(event : InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		var ev := InputEventMouseButton.new()
+		ev.button_index = (event as InputEventMouseButton).button_index
+		ev.pressed = false
+		get_tree().input_event(ev) #needed to trick godots drag and drop system
+		_on_clicked(true)
+
+
+func _on_clicked(active : bool) -> void:
 	pass
