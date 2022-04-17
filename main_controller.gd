@@ -25,6 +25,7 @@ func load_editor(file : String):
 	var level := Level.new()
 	level.interpret(level_string)
 	EditorController.current_level = level
+	EditorController.current_file = file
 	Extended.remove_children(self)
 	if not editor:
 		editor = editor_scene.instance()

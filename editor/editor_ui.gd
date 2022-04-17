@@ -18,6 +18,9 @@ func _ready() -> void:
 func _on_tree_entered() -> void:
 	if level_tree:
 		setup_tree()
+	if view:
+		setup_view()
+	$Pause.visible = false
 
 
 func _on_tree_exited() -> void:
@@ -69,3 +72,30 @@ func setup_presets() -> void:
 func setup_view() -> void:
 	view.current_tile = EditorController.current_level.root[0]
 	view.refresh()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.scancode == KEY_ESCAPE and not event.echo and event.pressed:
+			$Pause.visible = !$Pause.visible
+
+
+func quit():
+	if view:
+		Extended.free_children(view.grid)
+	MainController.load_menu()
+
+
+func save():
+	if not EditorController.current_level:
+		return
+	var leveldata : String = EditorController.current_level.save()
+	var level_file := File.new()
+	level_file.open(EditorController.current_file,File.WRITE)
+	level_file.store_string(leveldata)
+	level_file.close()
+
+
+func save_and_quit():
+	save()
+	quit()
