@@ -38,6 +38,7 @@ func _save() -> String:
 	data += ._save()
 	data += " " + String(id)
 	data += " " + String(width)
+	data += " " + String(height)
 	data += " " + String(colour.h)
 	data += " " + String(colour.s)
 	data += " " + String(colour.v)
