@@ -22,7 +22,7 @@ var possessable : Control
 var tile_scene := load("res://editor/tiles/ui_tile.tscn") as PackedScene
 
 
-func _ready() -> void:
+func init_child_vars() -> void:
 	button_floor = $Floor/Button
 	player_button_floor = $Floor/PlayerButton
 	fast_travel_floor = $Floor/FastTravel
@@ -39,6 +39,7 @@ func _ready() -> void:
 
 
 func refresh(layer : int = 0) -> void:
+	init_child_vars()
 	floor_rect.color = colour * 0.8
 	floor_rect.color.a = 1
 	wall.color = colour
